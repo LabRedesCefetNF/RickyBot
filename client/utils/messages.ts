@@ -74,7 +74,7 @@ function printData(data: string | null) {
 }
 
 export function registerMessage(name: String) {
-  return `Olá, ${name}. 👋
+  return `Olá. 👋
 Bem-vindo(a) ao nosso serviço de verificação de links! Estamos aqui para ajudar você a tomar decisões mais assertivas sobre a confiabilidade de links que você suspeita.
 Por favor, tenha em mente as seguintes informações: ⤵️
 *1.* Este bot realiza uma consulta na receita federal com os dados do responsável pelo domínio, mas não pode garantir 100% de precisão quanto a confiabilidade de um site.

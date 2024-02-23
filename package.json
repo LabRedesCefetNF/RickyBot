@@ -7,7 +7,8 @@
     "dev": "nodemon",
     "start": "node build/index.js",
     "start-mongo": "docker-compose up -d",
-    "server": "npm run start-mongo && node ./server/app.mjs"
+    "docker": "docker-compose up --build -d",
+    "server": "node ./server/app.mjs"
   },
   "devDependencies": {
     "@types/node": "^20.1.5",
@@ -18,6 +19,7 @@
     "node-fetch": "^3.3.2",
     "nodemon": "^2.0.22",
     "rimraf": "^5.0.0",
+    "sharp": "^0.33.2",
     "ts-node": "^10.9.1",
     "typecript": "^0.0.1-security",
     "typescript": "^5.2.2"

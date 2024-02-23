@@ -3,3 +3,4 @@ build
 tokens
 .env
 db.json
+package-lock.json

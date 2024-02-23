@@ -7,3 +7,21 @@ services:
     restart: always
     ports:
       - "27017:27017"
+  client:
+    build: .
+    command: npm run dev
+    volumes:
+      - .:/app
+    working_dir: /app
+    depends_on:
+      - server
+
+  # Serviço para o servidor
+  server:
+    build: .
+    command: npm run server
+    volumes:
+      - .:/app
+    ports:
+      - "1233:1233"
+    working_dir: /app

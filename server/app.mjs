@@ -9,6 +9,7 @@ import UserSchema from "./model/userModel.js";
 const app = express();
 
 dotenv.config();
+const serverPort = process.env.SERVER_PORT;
 
 import routes from "./routes/routes.js";
 
@@ -72,6 +73,6 @@ app.get("/api/users/number/:numero", async (req, res) => {
   }
 });
 
-app.listen(80, () => {
-  console.log("API UP! ");
+app.listen(serverPort, () => {
+  console.log("Server running: ", serverPort);
 });

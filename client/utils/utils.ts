@@ -1,9 +1,14 @@
 import { Message } from "venom-bot";
 import { find } from "../../server/model/userModel";
+import dotenv from "dotenv";
+
 // import { consultUserByNumber } from "../../server/controller/userController.js";
 
 const fs = require("fs");
 const cron = require("node-cron");
+
+dotenv.config();
+const serverPort = process.env.SERVER_PORT;
 
 cron.schedule("0 0 1 * *", () => {
   resetDB();
@@ -150,7 +155,7 @@ function resetDB() {
 export async function getWhoisData(url: string) {
   console.log("searching whois data");
   try {
-    const response = await fetch(`http://localhost:80/whois/${url}`, {
+    const response = await fetch(`http://server:${serverPort}/whois/${url}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -171,12 +176,15 @@ export async function getRfData(cnpj: string) {
   console.log("searching receita data");
   const cnpjSanitized = cnpj.replace(/[^\d]+/g, "");
   try {
-    let response = await fetch(`http://localhost:80/receita/${cnpjSanitized}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    let response = await fetch(
+      `http://server:${serverPort}/receita/${cnpjSanitized}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     console.log(response.status);
     if (response.status === 404) {
       return null;
@@ -193,7 +201,7 @@ async function findUser(number: String) {
   console.log("checking user");
   try {
     let response = await fetch(
-      `http://localhost:80/api/users/number/${numberSanitized}`,
+      `http://server:${serverPort}/api/users/number/${numberSanitized}`,
       {
         method: "GET",
         headers: {
@@ -213,7 +221,7 @@ async function findUser(number: String) {
 }
 export async function saveMessageSender(message: Message) {
   try {
-    const url = "http://localhost/api/users";
+    const url = `http://server:${serverPort}/api/users`;
     if (!message.sender) {
       console.error("Sender not defined in message:", message);
       return;

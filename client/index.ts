@@ -21,7 +21,7 @@ import { checkLookup } from "./utils/dns.ts";
 const { Mutex } = require("async-mutex");
 
 create({
-  session: "bot-fraude",
+  session: `chat-bot`,
 })
   .then(async (client: Whatsapp) => await start(client))
   .catch((err) => {
